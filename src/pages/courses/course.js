@@ -17,7 +17,7 @@ export default function Courses() {
         <CourseNavItem href="#">Trending Courses</CourseNavItem>
       </CourseNav>
       <form
-        class="group relative"
+        class="group relative searchBar"
         style={{ margin: "15px auto", width: "48%" }}
       >
         <svg

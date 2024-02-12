@@ -1,6 +1,8 @@
 import { StarIcon } from "@heroicons/react/20/solid";
 import { CoursesData } from "../../db/courses";
 import { useParams } from "react-router-dom";
+import { PlusIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -9,6 +11,8 @@ function classNames(...classes) {
 export default function CourseDetails() {
   const params = useParams();
   const course = CoursesData[params.id - 1];
+  const [syllabusHidden, setSyllabusHidden] = useState(true);
+
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -123,6 +127,19 @@ export default function CourseDetails() {
 
             <div className="mt-10">
               <h2 className="text-sm font-medium text-gray-900">
+                Course enrollment status
+              </h2>
+              <div className="mt-4 space-y-6">
+                <p className="text-sm text-gray-600">
+                  <span className="inline-flex items-center mx-1 rounded-md bg-violet-50 px-2 py-1 text-xs font-medium text-violet-700 ring-1 ring-inset ring-violet-700/10">
+                    {course.enrollmentStatus}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h2 className="text-sm font-medium text-gray-900">
                 Prerequisites
               </h2>
               <div className="mt-4 space-y-6">
@@ -139,9 +156,18 @@ export default function CourseDetails() {
             </div>
 
             <div className="mt-10">
-              <h3 className="text-sm font-medium text-gray-900">Syllabus</h3>
+              <div
+                className="flex w-100 hover:bg-gray-100 p-2 hover:cursor-pointer"
+                style={{ justifyContent: "space-between" }}
+                onClick={() => setSyllabusHidden(!syllabusHidden)}
+              >
+                <h3 className="text-sm font-medium text-gray-900">Syllabus</h3>{" "}
+                <span>
+                  <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                </span>
+              </div>
 
-              <div className="mt-4">
+              <div className="mt-4" hidden={syllabusHidden}>
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
                   {course.syllabus.map((item, key) => (
                     <li key={key} className="text-gray-400">
