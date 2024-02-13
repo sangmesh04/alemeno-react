@@ -172,7 +172,7 @@ export default function Navbar() {
                       />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
+                      <div className="text-base font-medium leading-none text-gray-700">
                         {user.name}
                       </div>
                     </div>
